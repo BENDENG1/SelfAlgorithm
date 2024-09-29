@@ -67,7 +67,6 @@ void backTracking(int cnt, int idx){
         for(int j = 0; j < n - 1 ; j++){
             if(visited[i][j]) continue;
             if(j > 0 && visited[i][j - 1]) continue;
-            if (j + 1 < n && visited[i][j + 1]) continue;
 
             visited[i][j] = true;
             backTracking(cnt + 1, i);
