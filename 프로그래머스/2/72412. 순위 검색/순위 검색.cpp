@@ -96,3 +96,206 @@ vector<int> solution(vector<string> info, vector<string> query) {
     
     return answer;
 }
+
+/*
+
+#include <string>
+#include <vector>
+#include <sstream>
+#include <map>
+#include <algorithm>
+#include <iostream>
+
+using namespace std;
+
+struct Applicant {
+    string language;
+    string field;
+    string history;
+    string soulFood;
+    int score;
+    
+    bool operator<(const Applicant& other) const {
+        return tie(language, field, history, soulFood) < tie(other.language, other.field, other.history, other.soulFood);
+    }
+};
+
+map<Applicant,vector<int>> m;
+
+vector<string> splitAndRemoveAnd(const string& str) {
+    vector<string> result;
+    istringstream iss(str);
+    string word;
+
+    while (iss >> word) {
+        if (word != "and") {
+            result.push_back(word);
+        }
+    }
+
+    return result;
+}
+
+int stringToInt(string s){
+    int num = 0;
+    for(char c : s){
+        num *= 10;
+        num += c - '0';
+    }
+    return num;
+}
+
+
+Applicant splitInfo(const string& info) {
+    Applicant applicant = Applicant();
+    vector<string> infoVec = splitAndRemoveAnd(info);
+    
+    applicant.language = infoVec[0];
+    applicant.field = infoVec[1];
+    applicant.history = infoVec[2];
+    applicant.soulFood = infoVec[3];
+    applicant.score = stringToInt(infoVec[4]);
+    
+    return applicant;
+}
+
+int findQueryFilter(const string& query) {
+    int count = 0, idx = 0;
+    Applicant condition = Applicant();
+    vector<string> infoVec = splitAndRemoveAnd(query);
+    
+    condition.language = infoVec[0];
+    condition.field = infoVec[1];
+    condition.history = infoVec[2];
+    condition.soulFood = infoVec[3];
+    condition.score = stringToInt(infoVec[4]);
+        
+    for (const auto& [applicant, scores] : m) {
+        if ((condition.language == "-" || applicant.language == condition.language) &&
+            (condition.field == "-" || applicant.field == condition.field) &&
+            (condition.history == "-" || applicant.history == condition.history) &&
+            (condition.soulFood == "-" || applicant.soulFood == condition.soulFood)) {
+            count += count_if(scores.begin(), scores.end(), [&](int score) {
+                return score >= condition.score;
+            });
+        }
+    }
+    
+    
+    return count;
+}
+
+vector<int> solution(vector<string> info, vector<string> query) {
+    vector<int> answer;
+    
+    for(string s : info){
+        Applicant tmp = splitInfo(s);
+        m[tmp].push_back(tmp.score);
+    }
+    
+    for(string s : query){
+        answer.push_back(findQueryFilter(s));
+    }
+    
+    return answer;
+}
+
+
+*/
+
+
+/*
+#include <string>
+#include <vector>
+#include <sstream>
+#include <map>
+
+using namespace std;
+
+struct Applicant {
+    string language;
+    string field;
+    string history;
+    string soulFood;
+    int score;
+};
+
+vector<string> splitAndRemoveAnd(const string& str) {
+    vector<string> result;
+    istringstream iss(str);
+    string word;
+
+    while (iss >> word) {
+        if (word != "and") {
+            result.push_back(word);
+        }
+    }
+
+    return result;
+}
+
+int stringToInt(string s){
+    int num = 0;
+    for(char c : s){
+        num *= 10;
+        num += c - '0';
+    }
+    return num;
+}
+
+
+Applicant splitInfo(const string& info) {
+    Applicant applicant = Applicant();
+    vector<string> infoVec = splitAndRemoveAnd(info);
+    
+    applicant.language = infoVec[0];
+    applicant.field = infoVec[1];
+    applicant.history = infoVec[2];
+    applicant.soulFood = infoVec[3];
+    applicant.score = stringToInt(infoVec[4]);
+    
+    return applicant;
+}
+
+int findQueryFilter(const string& query, const vector<Applicant>& v) {
+    int count = 0, idx = 0;
+    Applicant condition = Applicant();
+    vector<string> infoVec = splitAndRemoveAnd(query);
+    
+    condition.language = infoVec[0];
+    condition.field = infoVec[1];
+    condition.history = infoVec[2];
+    condition.soulFood = infoVec[3];
+    condition.score = stringToInt(infoVec[4]);
+        
+    for(Applicant app : v){
+        if((app.score >= condition.score)
+           &&(app.language == condition.language || condition.language == "-")
+           && (app.field == condition.field || condition.field == "-")
+           && (app.history == condition.history || condition.history == "-" )
+           && (app.soulFood == condition.soulFood || condition.soulFood == "-")
+          )
+            count++;
+    }
+    
+    
+    return count;
+}
+
+
+vector<int> solution(vector<string> info, vector<string> query) {
+    vector<int> answer;
+    vector<Applicant> v;
+    
+    for(string s : info){
+        v.push_back(splitInfo(s));
+    }
+    
+    for(string s : query){
+        answer.push_back(findQueryFilter(s, v));
+    }
+    
+    
+    return answer;
+}
+*/
