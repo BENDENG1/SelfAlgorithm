@@ -1,10 +1,10 @@
 # [level 2] 괄호 변환 - 60058 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/60058?language=kotlin) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/60058?language=cpp) 
 
 ### 성능 요약
 
-메모리: 59.1 MB, 시간: 14.06 ms
+메모리: 4.12 MB, 시간: 0.10 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 10월 03일 23:02:43
+2024년 11월 21일 15:53:58
 
 ### 문제 설명
 
