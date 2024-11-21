@@ -1,10 +1,10 @@
 # [level 2] 두 큐 합 같게 만들기 - 118667 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/118667?language=kotlin) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/118667?language=cpp) 
 
 ### 성능 요약
 
-메모리: 117 MB, 시간: 130.21 ms
+메모리: 25.9 MB, 시간: 5.29 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 10월 02일 23:53:32
+2024년 11월 21일 13:14:02
 
 ### 문제 설명
 
